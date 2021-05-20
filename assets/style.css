@@ -4,7 +4,7 @@ border: dotted 1px;
 }
 /* body{
     /* background-image:  */
-.container{
+#container{
     display: block;
     color: rgb(28, 55, 173);
     top: 40%;
