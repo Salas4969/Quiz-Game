@@ -18,8 +18,7 @@ var questionArray =[
         correctAnswer: "answer3"},
         {question: "question 4",
         answers:["answer1", "answer2","answer 3","answer4"],
-        correctAnswer: "answer4"
-    },
+        correctAnswer: "answer4"},
     {question:"question 5",
     answers:["answer1", "answer2", "answer3", "answer4"],
     correctAnswer:"answer4"},
@@ -29,19 +28,16 @@ var questionArray =[
 ]
 function renderQuestion() {
     console.log(questionIndex)
-    
-    if(questionIndex === questionArray.length ){
-        // scorepage()
+    if(questionIndex > questionArray.length -1){
+       stoptime()
+        console.log("end")
+        scorepage()
         return;
-        
     }
-
     var displayedQuestion = questionArray[questionIndex];
     console.log(displayedQuestion)
     questionPlace.textContent = displayedQuestion.question
 
- 
-    
     answerPlace.innerHTML=""
 
     for ( var i =0; i < displayedQuestion.answers.length; i++) {
@@ -53,15 +49,14 @@ function renderQuestion() {
 }
     // After final question move to high score page
     // user inputs initials
-    // function scorepage() {
-    //     questionPlace.innerHTML ="Input Initials"
-    //     answerPlace.remove(button)
-    //     var input = document.createElement("input");
-    //     input.type = "text";
-    //     answerPlace.appendChild(input);
-    // console.log("scorepg")
-    // }
-    // document.createElement(InputEvent)
+    function scorepage () {
+        questionPlace.innerHTML ="Input Initials"
+        var row = table.insertRow(1);
+        var input = document.createElement("input");
+        input.type = "text";
+        answerPlace.appendChild(input);
+    console.log("scorepg")
+    }
     
     // After answer move to next question and add score if right remove time if wrong x5
 function checkanswer(event){
@@ -73,8 +68,8 @@ function checkanswer(event){
         alert("correct!🎉")
         console.log(score)
     }else{
-        alert("-10sec lol!")
-        timeLeft -=10
+        alert("-20sec lol!")
+        timeLeft -=20
     }
     renderQuestion()
     questionIndex++
@@ -97,7 +92,8 @@ strtbutton.addEventListener("click", function(){
 function startTime(){
 var quiztimer = setInterval(function() {
     if (timeLeft ===0){
-        clearInterval(quiztimer);
+        scorepage
+        function stoptime (){ clearInterval(quiztimer);}
     } else {
         document.getElementById("timer").innerText = timeLeft + "s"
     }
