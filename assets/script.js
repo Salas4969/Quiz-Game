@@ -1,52 +1,89 @@
-var Score = 0;
-var timeLeft;
-var createQuestion;
-var createAnswer;
+var score = 0;
+var timeLeft = 180;
 var container = document.getElementById("container");
-var header = document.querySelector("#header");
 var start;
-var button = document.querySelector("#start");
-localStorage.setItem("queastion 1", "answer");
-localStorage.setItem("queastion 2", "answer");
-localStorage.setItem("queastion 3", "answer");
-localStorage.setItem("queastion 4", "answer");
-localStorage.setItem("queastion 5", "answer");
+var questionPlace = document.getElementById("question")
+var answerPlace = document.getElementById("answers")
+var strtbutton = document.querySelector("#start");
+var questionIndex = 0
+var questionArray =[
+    {
+        question: "question 1",
+        answers:["answer1", "answer2","answer 3","answer4"],
+        correctAnswer: "answer1"},
+       { question: "question 2",
+        answers:["answer1", "answer2","answer 3","answer4"],
+        correctAnswer: 2},
+        {question: "question 3",
+        answers:["answer1", "answer2","answer 3","answer4"],
+        correctAnswer: 3},
+        {question: "question 4",
+        answers:["answer1", "answer2","answer 3","answer4"],
+        correctAnswer: 4
+    }
+]
+function renderQuestion() {
+    if(questionIndex>questionArray.length - 1){
+        scorepage()
+        return;
+    }
+    var displayedQuestion = questionArray[questionIndex];
+    questionPlace.textContent =displayedQuestion.question
+    
+    answerPlace.innerHTML=""
 
-start = document.querySelector("#start").onclick = startQuiz;
+    for ( var i =0; i < displayedQuestion.answers.length; i++) {
+        var button = document.createElement("button");
+        button.addEventListener("click",renderQuestion)
+        button.textContent = displayedQuestion.answers[i];
+        answerPlace.appendChild(button);
+        questionIndex++
+    }}
+    // After final question move to high score page
+    function scorepage() {
+    //     document.body.createElement("input")
+    console.log("scorepg")
+    }
+    // user inputs initials
+    // document.createElement(InputEvent)
+    
+    // After answer move to next question and add score if right remove time if wrong x5
+// function checkanswer(event){
+//     var userInput = event.target.innerText
+//     var rightAnswer = questionArray[questionIndex].correctAnswer
+//     console.log(questionArray[questionIndex].correctAnswer)
+    // if(userInput==rightAnswer){
+    //     score++
+    //     console.log(score)
+    // }else{
+    // }
+    // renderQuestion
+    // questionIndex++
+// }
 
-function startQuiz() {
-    // start timer 40 sec for each q
-  console.log("started");
-  header.remove();
-  button.remove();
-  document.getElementById("question").innerHTML= "Who first discovered Puerto Rico? "
-// Display 4 possible answers
-var createbutton1 =document.createElement("button")
-container.appendChild(createbutton1)
-createbutton1.innerText="Answer"
 
-var createbutton2 =document.createElement("button")
-container.appendChild(createbutton2)
-createbutton2.innerText="F.Answer"
-
-var createbutton3 =document.createElement("button")
-container.appendChild(createbutton3)
-createbutton3.innerText="F.Answer"
-
-var createbutton4 =document.createElement("button")
-container.appendChild(createbutton4)
-createbutton4.innerText="F.Answer"
-// After answer move to next question and add score if right remove time if wrong x5
-
-}
-// After final question move to high score page 
-// user inputs initials
-// saves highscore to local storage 
+// saves highscore to local storage
+localStorage.setItem("highscore", score)
 
 // clears local storage
+// btn.onclick localstorage.remove("highscore")
 
 // button to restart quiz
+strtbutton.addEventListener("click", function(){
+    renderQuestion()
+    header.style.display ="none";
+    strtbutton.style.display ="none";
+    startTime()
+})
+function startTime(){
+var quiztimer = setInterval(function() {
+    if (timeLeft <=0){
+        clearInterval(quiztimer);
+    } else {
+        document.getElementById("timer").innerText = timeLeft + "s"
+    }
+     timeLeft--;
+}, 1000);
+}
 
-// display time on right side
 
-// Displays Score on left side
