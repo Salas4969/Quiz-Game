@@ -7,59 +7,78 @@ var answerPlace = document.getElementById("answers")
 var strtbutton = document.querySelector("#start");
 var questionIndex = 0
 var questionArray =[
-    {
-        question: "question 1",
+    { question: "question 1",
         answers:["answer1", "answer2","answer 3","answer4"],
         correctAnswer: "answer1"},
-       { question: "question 2",
+        {question: "question 2",
         answers:["answer1", "answer2","answer 3","answer4"],
-        correctAnswer: 2},
+        correctAnswer: "answer2"},
         {question: "question 3",
         answers:["answer1", "answer2","answer 3","answer4"],
-        correctAnswer: 3},
+        correctAnswer: "answer3"},
         {question: "question 4",
         answers:["answer1", "answer2","answer 3","answer4"],
-        correctAnswer: 4
-    }
+        correctAnswer: "answer4"
+    },
+    {question:"question 5",
+    answers:["answer1", "answer2", "answer3", "answer4"],
+    correctAnswer:"answer4"},
+    {question:"question 6",
+    answers:["answer1", "answer2", "answer3", "answer4"],
+    correctAnswer:"answer4"}
 ]
 function renderQuestion() {
-    if(questionIndex>questionArray.length - 1){
-        scorepage()
+    console.log(questionIndex)
+    
+    if(questionIndex === questionArray.length ){
+        // scorepage()
         return;
+        
     }
+
     var displayedQuestion = questionArray[questionIndex];
-    questionPlace.textContent =displayedQuestion.question
+    console.log(displayedQuestion)
+    questionPlace.textContent = displayedQuestion.question
+
+ 
     
     answerPlace.innerHTML=""
 
     for ( var i =0; i < displayedQuestion.answers.length; i++) {
         var button = document.createElement("button");
-        button.addEventListener("click",renderQuestion)
         button.textContent = displayedQuestion.answers[i];
         answerPlace.appendChild(button);
-        questionIndex++
-    }}
-    // After final question move to high score page
-    function scorepage() {
-    //     document.body.createElement("input")
-    console.log("scorepg")
+        button.addEventListener("click", checkanswer)
     }
+}
+    // After final question move to high score page
     // user inputs initials
+    // function scorepage() {
+    //     questionPlace.innerHTML ="Input Initials"
+    //     answerPlace.remove(button)
+    //     var input = document.createElement("input");
+    //     input.type = "text";
+    //     answerPlace.appendChild(input);
+    // console.log("scorepg")
+    // }
     // document.createElement(InputEvent)
     
     // After answer move to next question and add score if right remove time if wrong x5
-// function checkanswer(event){
-//     var userInput = event.target.innerText
-//     var rightAnswer = questionArray[questionIndex].correctAnswer
-//     console.log(questionArray[questionIndex].correctAnswer)
-    // if(userInput==rightAnswer){
-    //     score++
-    //     console.log(score)
-    // }else{
-    // }
-    // renderQuestion
-    // questionIndex++
-// }
+function checkanswer(event){
+    var userInput = event.target.innerText
+    var rightAnswer = questionArray[questionIndex].correctAnswer
+    console.log(questionArray[questionIndex].correctAnswer)
+    if(userInput==rightAnswer){
+        score++
+        alert("correct!🎉")
+        console.log(score)
+    }else{
+        alert("-10sec lol!")
+        timeLeft -=10
+    }
+    renderQuestion()
+    questionIndex++
+}
 
 
 // saves highscore to local storage
@@ -77,12 +96,12 @@ strtbutton.addEventListener("click", function(){
 })
 function startTime(){
 var quiztimer = setInterval(function() {
-    if (timeLeft <=0){
+    if (timeLeft ===0){
         clearInterval(quiztimer);
     } else {
         document.getElementById("timer").innerText = timeLeft + "s"
     }
-     timeLeft--;
+    timeLeft--;
 }, 1000);
 }
 
