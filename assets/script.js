@@ -22,7 +22,7 @@ var questionArray = [
     },
     {
         question: "Who discovered Puerto Rico?",
-        answers: ["Christopher Columbus", "Ponce de Leon", "George Washinton", "Daddy Yankee"],
+        answers: ["Christopher Columbus", "Ponce de Leon", "George Washington", "Daddy Yankee"],
         correctAnswer: "Christopher Columbus",
     },
     {
@@ -44,7 +44,7 @@ var questionArray = [
 
 function renderQuestion() {
     if (questionIndex > questionArray.length-1) {
-        alert("You got " + score + "out of 6 correct!" )
+        alert("You got " + score + " out of 6 correct!" )
         scorepage();
         document.getElementById("timer").innerText = "Finished!";
         clearInterval(quiztimer);
