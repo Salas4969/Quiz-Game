@@ -131,7 +131,7 @@ function checkanswer(event) {
     console.log(questionArray[questionIndex].correctAnswer);
     if (userInput === rightAnswer) {
         score++;
-        alert("correct!🎉");
+        alert("Correct!🎉");
         console.log(score);
     } else {
         alert("-30sec lol!");
