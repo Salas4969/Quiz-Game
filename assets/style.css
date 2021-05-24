@@ -1,29 +1,38 @@
 *{padding: 0%;
 margin: 0;
-border: dotted 1px;
+/* border: dotted 1px; */
 }
-html,body{
+body{ 
+    background-repeat: no-repeat;
     height: 100%;
+    background-attachment: fixed;
+background-image: linear-gradient(rgba(23, 46, 253, 0.767), rgb(202, 39, 39))
+
 }
-body{
-    position: relative;
-}
+
 header{
     display: flex;
     justify-content: space-around;
 }
+#flexfix{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 40%;
+    width: 100%;
+}
 
  #container{
-     position: absolute;
-     top: 50%;
-     left: 20%;
-    display: flex;
-    flex-direction: column;
+     /* position:absolute; */
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     justify-self:center;
+     width: 50%;
+     flex-direction: column;
     color: rgb(0, 16, 78);
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    
+
+
 }
 #header{
     font-weight: bolder;
@@ -37,8 +46,23 @@ button{
     width: 50%;
     font-size: 18px;
     font-weight: bold;
+    margin: 1px;
+}
+input{
+    transform: scale(1.15);
+    width: 45%;
+    margin-left: 15px;
+    margin-bottom: 3px;
+    padding: 1px;
+
+}
+#tablePlace{
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
 }
 #score,#timer{
-font-size: 16px;
-color: red;
+font-size: 24px;
+font-weight:200;
+color: rgb(223, 3, 3);
 }
